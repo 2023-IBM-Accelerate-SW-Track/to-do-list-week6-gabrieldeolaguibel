@@ -15,12 +15,15 @@ class SearchTodo extends Component {
     });
   };
   
-
   handleSubmit = (e) => {
-    //Begin Here
-
+    e.preventDefault();
+    Axios.get("http://localhost:8080/get/searchitem", { params: { taskname: this.state.content } })
+      .then(res => {
+        this.setState({ tmpdata: res.data });
+      })
+      .catch(err => console.error(err));
   };
-  
+
   render() {
     return (
       <div>
